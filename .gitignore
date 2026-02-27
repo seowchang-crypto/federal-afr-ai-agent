@@ -207,3 +207,30 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# API Keys and Environment Variables
+.env
+
+# Master Databases and IP
+Master_Audit_Rulebook.json
+Master_Audit_Rulebook.csv
+Master_Audit_Rulebook.md
+Master_Audit_Rulebook.html
+OMB_A136_Checklist_FY25.json
+2025_SFFAS_Disclosure_Checklist.json
+OMB_A136_Checklist_FY25.csv
+2025_SFFAS_Disclosure_Checklist.csv
+OMB_A136_FY25_Raw.md
+2025_FASAB_SFFAS_Master.md
+
+# Temporary Checkpoints and Cache
+consolidation_checkpoint.json
+reviewer_checkpoint.json
+omb_checkpoint.txt
+sffas_checkpoint.txt
+__pycache__/
+.DS_Store
+
+# Virtual Environments
+venv/
+env/
