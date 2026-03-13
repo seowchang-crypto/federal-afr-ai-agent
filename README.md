@@ -1,40 +1,65 @@
-# AFR AI Reviewer: Automated Federal Financial Compliance Engine
+🏛️ Automated Federal Financial Disclosure Engine (AFR-AI)
 
-![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
-![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4o-412991.svg)
-![Azure](https://img.shields.io/badge/Azure-Document_Intelligence-0078D4.svg)
-![Streamlit](https://img.shields.io/badge/UI-Streamlit-FF4B4B.svg)
+📌 Executive Summary
 
-## Overview
-Bridging the gap between complex financial reporting and artificial intelligence, the **AFR AI Reviewer** is an agentic workflow designed to automate the highly tedious presentation and disclosure review of Agency Financial Reports (AFRs). 
+The Agency Financial Report (AFR) review process is historically a highly manual, time-intensive audit requiring deep domain expertise in Federal GAAP (SFFAS) and OMB Circular A-136.
 
-By combining technical accounting expertise with modern data engineering and AI orchestration, this pipeline reduces a multi-day manual ticking-and-tying process into a streamlined, interactive dashboard. This automation allows strategic finance, data, and reporting teams to shift their focus from formatting checklists to high-value financial analysis and anomaly detection.
+AFR-AI is an enterprise-grade, multi-agent ETL (Extract, Transform, Load) pipeline that automates the extraction, consolidation, and execution of federal financial compliance checklists. By combining a 3-agent LLM architecture (Triage, Extraction, and Formatting) with a custom Retrieval-Augmented Generation (RAG) framework, this system accelerates a multi-week, 150+ page compliance review into a highly accurate, deterministic, CPA-grade audit matrix.
 
-*(📸 Insert a screenshot or GIF of your Streamlit Dashboard here once it's finished!)*
+🔒 Note on Source Code & IP: To protect the proprietary intellectual property of the underlying heuristic prompts, routing locks, and extraction logic, the core generation scripts have been abstracted from this public repository. The provided code demonstrates the data pipeline, RAG architecture, and orchestration layers.
 
-## The Business Impact
-* **Accelerated Workflows:** Replaces 40+ hours of manual document review with a targeted AI evaluation engine.
-* **Risk Mitigation:** Programmatic guardrails prevent AI hallucination, ensuring regulatory compliance data is strictly verified against source text.
-* **Data Unification:** Seamlessly converts unstructured PDF reporting data into actionable, queryable formats.
+⚠️ Disclaimer: Human-in-the-Loop (HITL) Requirement This pipeline is engineered as an auditor-assistive tool designed to drastically accelerate the compliance review process and reduce manual data-gathering fatigue. It does not replace professional human judgment. While the pipeline utilizes advanced mitigation strategies to prevent AI hallucinations, LLMs can occasionally misinterpret highly nuanced regulatory contexts. All final compliance decisions reside strictly with the auditing professional.
 
-## Key Features & Architecture
+🚀 Advanced AI Capabilities & Engineering Triumphs
 
-This project is built on a multi-stage data pipeline:
+This project serves as a proving ground for applying generative AI to strict, zero-tolerance financial environments. Building this required defeating several inherent flaws in Large Language Models. Key engineering achievements include:
 
-1. **Intelligent Document Ingestion:** Extracts unstructured text and tabular data from 120+ page draft AFR PDFs, converting them into highly readable Markdown while preserving structural integrity.
-2. **Tri-State AI Evaluation Engine:** Executes a targeted, section-by-section analysis of the draft AFR. To prevent AI hallucination on off-document requirements (e.g., wet signatures, submission deadlines), the evaluation prompt is strictly constrained to a Tri-State output:
-   * 🟢 **Met (Yes):** Requirement is explicitly satisfied.
-   * 🔴 **Not Met (No):** Requirement is missing or incomplete.
-   * 🟡 **Unverifiable (Manual Review):** Administrative/Formatting requirements securely flagged for human verification.
-3. **Interactive UI:** A fully functional web application featuring drag-and-drop file ingestion, dynamic progress tracking, and an interactive data grid for filtering compliance anomalies.
+Agentic Semantic Routing & "Hijack" Prevention: Engineered a Triage Agent capable of autonomously mapping raw regulatory text to a massive Table of Contents. Successfully developed "Absolute Pre-Routing Overrides" to defeat LLM semantic hallucinations—specifically overcoming Token Gravity Hijacking (where heavy domain words pull the AI off-topic) and Negative Constraint Reversals (the "Pink Elephant" bug).
 
-## 🔒 Security & Intellectual Property Notice
-*This is a Public Showcase repository.* To protect proprietary data structures and adhere to strict security best practices, the comprehensive regulatory databases, raw extraction files, and backend environment configurations have been intentionally omitted. 
+Dense Paragraph Splitting & Table Custody: Built an Extraction Agent that surgically shatters run-on, multi-command regulatory paragraphs into distinct, granular JSON objects. Implemented a strict "Table Custody" protocol to ensure illustrative Markdown tables remain physically tethered to their corresponding textual commands, preventing data orphaning.
 
-This repository contains the core architectural scripts and a micro-batch test suite to demonstrate the agentic logic and pipeline orchestration without exposing the underlying intellectual property.
+Hybrid Deterministic Deduplication: Implemented a Python-driven fuzzy matching interceptor (via difflib) to catch and silently drop extraction variances, proving that traditional code and probabilistic LLMs must be orchestrated together to maintain perfect data integrity.
 
-## Disclaimer
-*This tool is a beta development project designed to accelerate financial operations and data review processes. It does not replace professional judgment. The final responsibility for ensuring regulatory compliance rests solely with the preparer and the reviewer.*
+Zero-Shot Format Adherence: Designed a Formatting Agent utilizing few-shot CPA examples to convert complex, nested compliance lists (e.g., Stem-and-Branch grammar) into strict, binary Yes/No/N/A audit questions.
 
----
-**Let's Connect:** If you are interested in discussing AI implementation in corporate finance, data strategy, or automation workflows, feel free to reach out via https://www.linkedin.com/in/seo-chang/ or seo.w.chang@gmail.com.
+🏗️ High-Level System Architecture (The Multi-Agent Workflow)
+
+The pipeline is built on decoupled pillars to ensure data integrity, scalability, and modularity:
+
+Agent 1: The Semantic Router (Triage): Ingests chunked regulatory PDFs, evaluates the text for actionable accounting commands, and locks the text to the correct hierarchical section using deterministic regex fallbacks and semantic guardrails.
+
+Agent 2: The Surgeon (Extraction): Takes dense, approved paragraphs and splits them into distinct compliance rules, preserving "boilerplate" narrative requirements while restructuring actionable lists.
+
+Agent 3: The CPA (Formatting): Processes the granular JSON payloads and translates them into an auditor-ready compliance matrix using strict grammar constraints.
+
+The Execution Engine: The front-end application that vectorizes a Draft AFR, performs targeted similarity searches against the generated rulebook, and outputs an evidence-backed compliance matrix (JSON/CSV/HTML).
+
+🛠️ Tech Stack
+
+AI & Machine Learning: OpenAI API (GPT-4o, text-embedding-3-small), Semantic Vector Search, Multi-Agent Orchestration.
+
+Cloud & Document Intelligence: Microsoft Azure AI (Document Intelligence / Layout Models) for unstructured PDF parsing and multi-modal OCR.
+
+Languages & Data: Python, Pandas, NumPy, JSON, Markdown, Regex.
+
+Domain Intersection: U.S. GAAP, Technical Accounting, Regulatory Compliance Auditing.
+
+📈 Known Limitations & Future Architecture (Continuous Integration)
+
+Building AI for federal accounting requires knowing the exact ceiling of probabilistic instruction-following. Current areas of ongoing research and architectural evolution include:
+
+Horizontal Scaling to SFFAS (Phase 2): Phase 1 successfully proved the multi-agent extraction architecture on the 150-page OMB Circular A-136. The architecture is designed to be framework-agnostic. Phase 2 of this project will scale the ETL pipeline to ingest and map the overarching FASAB/SFFAS corpus. This horizontal expansion is currently roadmapped as a future milestone to strategically manage API compute costs while the core deterministic routing logic is finalized.
+
+Tuning the Semantic Consolidator (Rule Merging): The middle layer of the pipeline is designed to ingest rulebooks from different frameworks (e.g., OMB vs. FASAB) and intelligently merge overlapping mandates. Ongoing development is focused on stress-testing the AI's similarity-matching thresholds to ensure it perfectly consolidates redundant rules without accidentally dropping highly nuanced, framework-specific exceptions.
+
+RAG Execution Engine Edge-Case Testing: The final phase of the pipeline—vectorizing a Draft AFR and executing the compliance checklist against it—is currently undergoing rigorous edge-case testing. Future updates will focus on optimizing the RAG retrieval parameters (e.g., dynamic chunking and Top-K tuning) to improve the LLM's ability to accurately retrieve and verify compliance evidence buried deep within multi-page, unstructured financial tables.
+
+Hybrid Deterministic Interceptors: Transitioning the pipeline's semantic routing from pure LLM instruction-following to a Regex-first architecture, utilizing Python to hard-lock highly regulated vocabulary (e.g., FCRA) before handing the payload to the LLM to save compute costs and guarantee zero routing hallucinations.
+
+📬 Let's Connect
+
+I am actively seeking feedback, constructive critiques, and discussions on how to improve this architecture. If you are interested in the intersection of Artificial Intelligence, Data Engineering, and Strategic Finance, I would love to connect!
+
+LinkedIn: [www.linkedin.com/in/seo-chang]
+
+Email: [seo.w.chang@gmail.com]
